@@ -7,12 +7,15 @@
  */
 $Config=array();
 $Config['DebugSql']=false;
-$Config['Session']=true;
+$Config['Session']=false;
 $Config['CharSet'] = 'utf-8';
 
-$Config['XSS']=false;
+$Config['XSS']=true;
 
 $Config['Host'] = 'localhost';
 $Config['User'] = 'root';
 $Config['Password'] = '';
-$Config['DBname'] = 'viple';
+$Config['DBname'] = '';
+
+$Config['encuss_site_id'] = '';
+$Config['encuss_api_secret'] = '';
