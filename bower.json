@@ -1,0 +1,23 @@
+{
+  "name": "YesIReadIt",
+  "homepage": "https://github.com/imyxz/YesIReadIt",
+  "authors": [
+    "imyxz <i@yxz.me>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "^2.4.4",
+    "axios": "^0.16.2",
+    "materialize": "imyxz/materialize#^0.100.3"
+  }
+}
