@@ -31,7 +31,7 @@ class user extends SlimvcController
         $token_key=$response['token_key'];
         $encuss_info=$this->http_post("http://encuss.yxz.me/siteAPI/get_user_info/",
             json_encode(array("token_id"=>$token_id,
-                "token_key"=>$api_secret,
+                "token_key"=>$token_key,
                 "site_id"=>$site_id
             )),10);
         $encuss_info=json_decode($encuss_info,true);
@@ -60,9 +60,34 @@ class user extends SlimvcController
         $this->info="登录成功！<br />欢迎您：$user_name<br />正在跳转至登录前访问的页面...";
         $this->location=urldecode($_GET['viewing']);
         if(empty($this->location))
-            $this->location=_Http;
+            $this->location=_HTTP;
         $this->view('jump');
 
+    }
+    function goLogin()
+    {
+        global $Config;
+        $api_secret=$Config['encuss_api_secret'];
+        $site_id=$Config['encuss_site_id'];
+        $viewing=_HTTP ."user/loginFromEncuss/";
+        $url="http://encuss.yxz.me/userAPI/loginFromQQ/site_id/$site_id/viewing/" . urlencode($viewing) ."/";
+        $this->location=$url;
+        $this->info="正在前往encuss登录";
+        $this->view("jump");
+    }
+    function editInfo()
+    {
+        $this->title="修改信息";
+        $this->isLogin=$this->helper("user_helper")->isLogin();
+        $this->active=4;
+        $this->view("edit_user_info");
+    }
+    function viewMyCreate()
+    {
+        $this->title="我发布的通知";
+        $this->isLogin=$this->helper("user_helper")->isLogin();
+        $this->active=3;
+        $this->view("view_my_submit");
     }
     protected function http_post($url, $post = NULL,$timeout=5)
     {

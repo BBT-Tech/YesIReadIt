@@ -94,7 +94,7 @@ class session_helper extends SlimvcHelper
         {
             if(substr($key,0,strlen(self::SESSION_PREFIX))==self::SESSION_PREFIX)
             {
-                return array("id"=>intval(substr($key,12)),
+                return array("id"=>intval(substr($key,strlen(self::SESSION_PREFIX))),
                     "key"=>$_COOKIE[$key]);
             }
         }

@@ -80,12 +80,5 @@ class user_helper extends SlimvcHelper
             $this->user_info=array();
         }
     }
-    function isPlayer()
-    {
-        return $this->isLogin()&&$this->user_info['player_id']>0;
-    }
-    function getPlayerID()
-    {
-        return $this->user_info['player_id'];
-    }
+
 }

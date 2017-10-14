@@ -106,6 +106,6 @@ class user_model extends SlimvcModel
             $login_ip,
             $now,
             $user_id);
-
     }
+
 }
