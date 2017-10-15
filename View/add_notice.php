@@ -11,7 +11,7 @@
                 <textarea id="notice_markdown" class="materialize-textarea" v-model="notice_markdown" ></textarea>
                 <label for="notice_markdown">通知内容</label>
             </div>
-            <div class="col s12 m6" v-html="markdown_html" class="markdown-body">
+            <div class="col s12 m6 markdown-body" v-html="markdown_html">
 
             </div>
         </div>
