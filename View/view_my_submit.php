@@ -10,7 +10,7 @@
                             <li v-for="notice in read_notices_info">
                                 <div class="collapsible-header">{{ notice.notice_title }}</div>
                                 <div class="collapsible-body white" style="padding-bottom: 0;">
-                                    <p>{{notice.notice_content}}</p>
+                                    <div v-html="notice.notice_content" class="markdown-body"></div>
                                     <div class="row right-align">
                                         <a class="waves-effect waves-light btn red" :href="notice.notice_id | noticeView">详情</a>
                                     </div>

@@ -9,7 +9,7 @@
                         <li v-for="notice in notices_info[group_id]">
                             <div class="collapsible-header">{{ notice.notice_title }}</div>
                             <div class="collapsible-body white " style="padding-bottom: 0;">
-                                <div class="no-big-text" v-html="notice.notice_content"></div>
+                                <div v-html="notice.notice_content" class="markdown-body"></div>
                                 <div class="row right-align">
                                     <button class="waves-effect waves-light btn" @click="answer_notice(notice)">Read It!</button>
                                 </div>
