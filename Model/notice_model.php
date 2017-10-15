@@ -9,7 +9,7 @@ class notice_model extends SlimvcModel
 {
     function getUserUnreadNotice($user_id)
     {
-        return $this->queryStmt("select  ni.*,ng.group_id
+        return $this->queryStmt("select  ni.pub_user_id,ni.notice_id,ni.notice_content,ni.notice_title,ni.notice_pub_time,ni.notice_end_time,ng.group_id
                                   from notice_info as ni,user_group_relation as ug,notice_group_relation as ng
                                   where ug.user_id=?
                                     and ng.group_id=ug.group_id
@@ -37,7 +37,7 @@ class notice_model extends SlimvcModel
             $start=$page*$limit;
         else
             $start=0;
-        return $this->queryStmt("select notice_info.* from notice_info,user_notice_status where user_notice_status.user_id=? and notice_info.notice_id=user_notice_status.notice_id order by user_notice_status.answer_time desc limit ?,?",
+        return $this->queryStmt("select notice_info.pub_user_id,notice_info.notice_id,notice_info.notice_content,notice_info.notice_title,notice_info.notice_pub_time,notice_info.notice_end_time from notice_info,user_notice_status where user_notice_status.user_id=? and notice_info.notice_id=user_notice_status.notice_id order by user_notice_status.answer_time desc limit ?,?",
                 "iii",
                 $user_id,
                 $start,
@@ -50,7 +50,7 @@ class notice_model extends SlimvcModel
             $start=$page*$limit;
         else
             $start=0;
-        return $this->queryStmt("select notice_info.* from notice_info where pub_user_id=? order by notice_id desc limit ?,?",
+        return $this->queryStmt("select notice_info.pub_user_id,notice_info.notice_id,notice_info.notice_content,notice_info.notice_title,notice_info.notice_pub_time,notice_info.notice_end_time from notice_info where pub_user_id=? order by notice_id desc limit ?,?",
             "iii",
             $user_id,
             $start,
@@ -70,17 +70,19 @@ class notice_model extends SlimvcModel
             $notice_id,
             $notice_id)->all();
     }
-    function newNotice($pub_user_id,$notice_title,$notice_content,$notice_pub_time,$notice_end_time)
+    function newNotice($pub_user_id,$notice_title,$notice_content,$notice_markdown,$notice_pub_time,$notice_end_time)
     {
         if(!$this->queryStmt("insert into notice_info set pub_user_id=?,
                               notice_title=?,
                               notice_content=?,
+                              notice_markdown=?,
                               notice_pub_time=from_unixtime(?),
                               notice_end_time=from_unixtime(?)",
-            "issii",
+            "isssii",
             $pub_user_id,
             $notice_title,
             $notice_content,
+            $notice_markdown,
             $notice_pub_time,
             $notice_end_time))
             return false;

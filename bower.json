@@ -18,6 +18,9 @@
   "dependencies": {
     "vue": "^2.4.4",
     "axios": "^0.16.2",
-    "materialize": "imyxz/materialize#^0.100.3"
+    "materialize": "imyxz/materialize#^0.100.3",
+    "showdown": "^1.7.6",
+    "lodash": "^4.17.4",
+    "github-markdown-css": "^2.9.0"
   }
 }

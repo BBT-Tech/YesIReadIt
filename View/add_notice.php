@@ -7,9 +7,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="input-field col s12">
-                <textarea id="notice_content" class="materialize-textarea" v-model.trim="notice_content"></textarea>
-                <label for="notice_content">通知内容</label>
+            <div class="input-field col s12 m6">
+                <textarea id="notice_markdown" class="materialize-textarea" v-model="notice_markdown" ></textarea>
+                <label for="notice_markdown">通知内容</label>
+            </div>
+            <div class="col s12 m6" v-html="markdown_html" class="markdown-body">
+
             </div>
         </div>
         <div class="row">
@@ -34,13 +37,16 @@
     </div>
     <script>
         var basic_url="<?php echo _HTTP;?>";
+        var converter = new showdown.Converter();
         var vm=new Vue(
             {
                 el: "#container",
                 data: {
                     notice_title:"",
                     notice_content:"",
-                    privilege_groups:[]
+                    notice_markdown:"",
+                    privilege_groups:[],
+                    markdown_html:""
 
                 },
                 filters: {
@@ -71,6 +77,12 @@
                         });
 
                 },
+                watch:{
+                    notice_markdown:function(newval)
+                    {
+                        this.convertMarkdown();
+                    }
+                },
                 methods: {
                     submitNotice:function()
                     {
@@ -81,7 +93,7 @@
 
                         var obj={
                             notice_title:this.notice_title,
-                            notice_content:this.notice_content,
+                            notice_markdown:this.notice_markdown,
                             notice_groups:groups,
                             notice_end_time:Date.parse($('#notice_end_time').val())/1000
                         };
@@ -98,7 +110,13 @@
                                     Materialize.toast('<span class="">'+response.data.err_msg+'</span>' , 2000);
                                 }
                             });
-                    }
+                    },
+                    convertMarkdown:_.debounce(
+                        function () {
+                            vm.markdown_html=converter.makeHtml(vm.notice_markdown);
+                        },
+                        200
+                    )
                 }
             }
         );

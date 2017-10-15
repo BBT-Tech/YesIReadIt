@@ -1,0 +1,4 @@
+{"require": {
+        "erusev/parsedown": "^1.6",
+                "ezyang/htmlpurifier": "^4.9"
+    }}

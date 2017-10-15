@@ -4,10 +4,9 @@
         <h2 style="margin-bottom: 0">
             {{notice_info.notice_title}}
         </h2>
-        <p class="grey-text text-lighten-1" style="margin-top:0">发送给: {{groups|array2String}}</p>
+        <p class="grey-text text-lighten-1" style="margin:0">发送给: {{groups|array2String}}</p>
         <div class="divider"></div>
-        <div>
-            <pre>{{notice_info.notice_content}}</pre>
+        <div v-html="notice_info.notice_content" class="markdown-body">
         </div>
         <div class="divider"></div>
         <h5>未回复:</h5>

@@ -8,8 +8,8 @@
                     <ul class="collapsible popover teal-text" data-collapsible="accordion">
                         <li v-for="notice in notices_info[group_id]">
                             <div class="collapsible-header">{{ notice.notice_title }}</div>
-                            <div class="collapsible-body white" style="padding-bottom: 0;">
-                                <p>{{notice.notice_content}}</p>
+                            <div class="collapsible-body white " style="padding-bottom: 0;">
+                                <div class="no-big-text" v-html="notice.notice_content"></div>
                                 <div class="row right-align">
                                     <button class="waves-effect waves-light btn" @click="answer_notice(notice)">Read It!</button>
                                 </div>
@@ -29,7 +29,7 @@
                         <li v-for="notice in read_notices_info">
                             <div class="collapsible-header">{{ notice.notice_title }}</div>
                             <div class="collapsible-body white" style="padding-bottom: 0;">
-                                <p>{{notice.notice_content}}</p>
+                                <div class="no-big-text" v-html="notice.notice_content"></div>
                                 <div class="row right-align">
                                     <a class="waves-effect waves-light btn red" :href="notice.notice_id | noticeView">详情</a>
                                 </div>
@@ -72,6 +72,12 @@
                 noticeView:function(id)
                 {
                     return basic_url + "notice/read/id/"+id;
+                },
+                html2string:function(val)
+                {
+                    var div=document.createElement("div");
+                    div.innerHTML=val;
+                    return div.innerText;
                 }
             },
             created: function(){

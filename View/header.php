@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="<?php echo _HTTP;?>css/materialize-icon.css">
     <link rel="stylesheet" href="<?php echo _HTTP;?>lib/materialize/dist/css/materialize.min.css">
     <script src="<?php echo _HTTP;?>lib/jquery/dist/jquery.min.js"></script>
-
     <script src="<?php echo _HTTP;?>lib/materialize/dist/js/materialize.min.js"></script>
-
     <script src="<?php echo _HTTP;?>lib/axios/dist/axios.min.js"></script>
     <script src="<?php echo _HTTP;?>lib/vue/dist/vue.min.js"></script>
+    <script src="<?php echo _HTTP;?>lib/showdown/dist/showdown.min.js"></script>
+    <script src="<?php echo _HTTP;?>lib/lodash/dist/lodash.min.js"></script>
     <script src="<?php echo _HTTP;?>js/common.js"></script>
-    <link rel="stylesheet" href="<?php echo _HTTP;?>css/style.css?201708611">
+    <link rel="stylesheet" href="<?php echo _HTTP;?>lib/github-markdown-css/github-markdown.css">
+    <link rel="stylesheet" href="<?php echo _HTTP;?>css/style.css?20171015">
     <title><?php echo $title;?> - Yes I Read It</title>
 
 </head>
